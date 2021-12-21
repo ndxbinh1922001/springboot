@@ -8,12 +8,7 @@ pipeline {
 
 
   stages {
-    stage('Unit Tests') {
-      steps {
-        sh 'mvn --version'
-        sh "mvn test"
-      }
-    }
+  
   
     stage('Build') {
       steps {
