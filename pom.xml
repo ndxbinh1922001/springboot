@@ -104,7 +104,7 @@
                 <version>2.5.2</version>
                 <configuration>
                     <to>
-                        <image>docker.io/thihuynh/${project.artifactId}</image>
+                        <image>docker.io/binh1922001/${project.artifactId}</image>
                         <tags>
                             <tag>${project.version}</tag>
                             <tag>latest</tag>
