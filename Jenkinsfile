@@ -17,6 +17,11 @@ pipeline {
         }
       }
     }
+    stage('Unit Tests') {
+    withEnv(["JAVA_HOME=${ tool "java-11" }", "PATH+MAVEN=${ tool "maven" }/bin:${env.JAVA_HOME}/bin"]) {
+        sh "mvn test"
+    }
+  }
 
     stage ('OWASP Dependency-Check Vulnerabilities') {
       steps {
@@ -55,10 +60,6 @@ pipeline {
       }
     }
 
-    stage('Deploy to K8s') {
-      steps {
-        kubernetesDeploy configs: 'k8s.yaml',  kubeconfigId: 'kubernetes-config'
-      } 
-    }
+    
   }
 }
