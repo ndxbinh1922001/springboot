@@ -9,7 +9,12 @@ pipeline {
 
   stages {
   
-  
+  stage('Unit Tests') {
+      steps {
+        sh 'mvn --version'
+        sh "mvn test"
+      }
+    }
     stage('Build') {
       steps {
         withMaven(maven : 'mvn-3.6.3') {
@@ -17,11 +22,8 @@ pipeline {
         }
       }
     }
-    stage('Unit Tests') {
-    withEnv(["JAVA_HOME=${ tool "java-11" }", "PATH+MAVEN=${ tool "maven" }/bin:${env.JAVA_HOME}/bin"]) {
-        sh "mvn test"
-    }
-  }
+    
+    
 
     stage ('OWASP Dependency-Check Vulnerabilities') {
       steps {
